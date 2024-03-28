@@ -1,4 +1,4 @@
-class Funcionario:
+class Funcionario: #o código esta com problemas logicos
     def __init__(self, nome,cpf,numero,email):
         self.nome = nome
         self.cpf = cpf
@@ -8,6 +8,11 @@ class Funcionario:
     def cadastrar_item(self, estoque, comida, quantidade,tipo_comida,validade):
         estoque.adicionar_item(comida, quantidade,tipo_comida,validade)
 
+    nome = input("Qual seu nome?")
+    cpf = input("Informe seu CPF?")
+    numero = input("Informe seu número")
+    email = input("Informe seu email")
+    print ("Obrigado(a) pelas informações")
 
 class Comida:
     def __init__(self, nome, tipo_comida,data_validade):
@@ -15,6 +20,9 @@ class Comida:
         self.tipo_com = tipo_comida
         self.dat_valid = data_validade
 
+    nome = input("Qual nome do alimento?")
+    TipoComida = input("Informe qual tipo de comida,se é industrializada ou perecível")
+    DataValidade = input("Se é industrializada qual a data de validade?")
 
 class Estoque:
     def __init__(self):
@@ -26,6 +34,7 @@ class Estoque:
         else:
             self.itens[comida.nome] = quantidade
 
+
     def remover_item(self, comida, quantidade):
         if comida.nome in self.itens:
             if self.itens[comida.nome] >= quantidade:
@@ -34,6 +43,7 @@ class Estoque:
                 print("Quantidade insuficiente em estoque.")
         else:
             print("Item não encontrado.")
+
 
     def verificar_estoque(self):
         print("Estoque atual:")
@@ -48,7 +58,14 @@ class Aluno:
         self.cpf = cpf
         self.num = numero
         self.email = email
-        self.presente = False  # Inicialmente, aluno não está presente
+        self.presente = False  #Inicialmente aluno não está presente
+
+    nome = input("Qual seu nome?")
+    cpf = input("Informe seu CPF?")
+    numero = input("Informe seu número")
+    email = input("Informe seu email")
+    print("Obrigado(a) pelas informações")
+
 
     def marcar_presenca(self, presenca):
         if presenca:

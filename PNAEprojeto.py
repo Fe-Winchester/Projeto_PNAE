@@ -1,28 +1,15 @@
-class Funcionario: #o código esta com problemas logicos
-    def __init__(self, nome,cpf,numero,email):
+class Funcionario:
+    def __init__(self, nome, cpf, numero, email):
         self.nome = nome
         self.cpf = cpf
         self.numero = numero
         self.email = email
 
-    def cadastrar_item(self, estoque, comida, quantidade,tipo_comida,validade):
-        estoque.adicionar_item(comida, quantidade,tipo_comida,validade)
-
-    nome = input("Qual seu nome?")
-    cpf = input("Informe seu CPF?")
-    numero = input("Informe seu número")
-    email = input("Informe seu email")
-    print ("Obrigado(a) pelas informações")
-
 class Comida:
-    def __init__(self, nome, tipo_comida,data_validade):
+    def __init__(self, nome, tipo_comida, data_validade):
         self.nome = nome
-        self.tipo_com = tipo_comida
-        self.dat_valid = data_validade
-
-    nome = input("Qual nome do alimento?")
-    TipoComida = input("Informe qual tipo de comida,se é industrializada ou perecível")
-    DataValidade = input("Se é industrializada qual a data de validade?")
+        self.tipo_comida = tipo_comida
+        self.data_validade = data_validade
 
 class Estoque:
     def __init__(self):
@@ -34,7 +21,6 @@ class Estoque:
         else:
             self.itens[comida.nome] = quantidade
 
-
     def remover_item(self, comida, quantidade):
         if comida.nome in self.itens:
             if self.itens[comida.nome] >= quantidade:
@@ -44,28 +30,18 @@ class Estoque:
         else:
             print("Item não encontrado.")
 
-
     def verificar_estoque(self):
         print("Estoque atual:")
         for comida, quantidade in self.itens.items():
             print(f"{comida}: {quantidade}")
-    def verificar_validade(self):
-        print("Validade:")
 
 class Aluno:
     def __init__(self, nome, cpf, numero, email):
         self.nome = nome
         self.cpf = cpf
-        self.num = numero
+        self.numero = numero
         self.email = email
-        self.presente = False  #Inicialmente aluno não está presente
-
-    nome = input("Qual seu nome?")
-    cpf = input("Informe seu CPF?")
-    numero = input("Informe seu número")
-    email = input("Informe seu email")
-    print("Obrigado(a) pelas informações")
-
+        self.presente = False  # Inicialmente aluno não está presente
 
     def marcar_presenca(self, presenca):
         if presenca:
@@ -75,8 +51,17 @@ class Aluno:
             self.presente = False
             print(f"{self.nome} não está presente.")
 
-    def verificar_presenca(self):
-        if self.presente:
-            print(f"{self.nome} está presente.")
-        else:
-            print(f"{self.nome} não está presente.")
+# Entrada de dados
+nome_funcionario = input("Qual seu nome? ")
+cpf_funcionario = input("Informe seu CPF? ")
+numero_funcionario = input("Informe seu número: ")
+email_funcionario = input("Informe seu email: ")
+
+nome_comida = input("Qual nome do alimento? ")
+tipo_comida = input("Informe qual tipo de comida, se é industrializada ou perecível: ")
+data_validade = input("Se é industrializada, qual a data de validade? ")
+
+nome_aluno = input("Qual seu nome? ")
+cpf_aluno = input("Informe seu CPF? ")
+numero_aluno = input("Informe seu número: ")
+email_aluno = input("Informe seu email: ")
