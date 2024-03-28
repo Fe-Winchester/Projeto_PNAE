@@ -1,4 +1,4 @@
-class Funcionario:
+class Funcionario: #o código esta com problemas logicos
     def __init__(self, nome,cpf,numero,email):
         self.nome = nome
         self.cpf = cpf
