@@ -36,11 +36,10 @@ class Estoque:
             print(f"{comida}: {quantidade}")
 
 class Aluno:
-    def __init__(self, nome, matricula, numero, email):
+    def __init__(self, nome, matricula, emailEstudantil):
         self.nome = nome
         self.matricula = matricula
-        self.numero = numero
-        self.email = email
+        self.email = emailEstudantil
         self.presente = False  # Inicialmente aluno não está presente
 
     def marcar_presenca(self, presenca):
