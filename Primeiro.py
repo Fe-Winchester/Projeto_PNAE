@@ -1,157 +1,156 @@
-class Funcionario:#criando uma classe
-    def _init_(self, nome, cpf, numero, email):#chamando o método construtor da classe
-        self.nome = nome
-        self.cpf = cpf
-        self.numero = numero
-        self.email = email
+# Protótipo de um sistema desenvolvido para o PNAE- Fase 1
+#Implementar a classe funcioário
+#Estudar onde cada função é executada
+#Adicionar uma mensagem de aviso á linha 14
+#Colocar comentários
+#estudar herança
+#implementar a classe pessoa/user
+#Sistema de senha de acesso
 
-
-class Comida:#criando outra classe
-    def _init_(self, nome, tipo_comida, data_validade, estoque):#essa tambem necessita de um método construtor
+class Comida:
+    def _init_(self, nome, tipo_comida, data_validade, estoque):
         self.nome = nome
         self.tipo_comida = tipo_comida
         self.data_validade = data_validade
-        ##criação de um novo atributo para mostrar quanto de um alimento ainda há em estoque
-        self.estoque = estoque
+        self.estoque = int(estoque)
 
 
-##aqui criei uma função que cria/instancia novos objetos da classe comida, basicamente cria um alimento qualquer para ser registrado depois
-def registrar():
-    nome = input("Digite o nome do alimento a ser adicionado: ").lower()
-    tipo_comida = input("Digite o tipo do alimento a ser adicionado: ").lower()
-    data_validade = input("Digite a data de validade do alimento a ser adicionado: ").lower()
-    estoque = input("Digite a quantidade do alimento a ser adicionado: ").lower()
-    print("\nalimento registrado com sucesso!!")
-    return Comida(nome, tipo_comida, data_validade, estoque)
-##lower padroniza tudo para  letra minúcula. Não podemos controlar oque o usuario digita,mas sima forma em que o sitema lida com isso
-##Lower é apenas um método para que 'S' vire um 's',assim o código roda de forma mais simples e sem erros.
-
-##removi a classe estoque pois era desnecessaria, as listas sozinhas já eram o suficiente, mas se futuramente for precisar vcs adicionam a classe de novo
 alimentos = []
 
-# criação de uma nova lista para armazenar pessoas registradas
 pessoas = []
 
 
-##mudei estes métodos transformando eles em funções para se adequarem as novas mudanças
-def adicionar_item():
-    while True:
-        alimento = input("qual alimento deseja adicionar ao estoque: ").lower()
-        for i in alimentos:
-            if alimento != i.nome:
-                print("O produto procurado não esta registrado no sistema")
-            else:
-                quantidade = input("quanto deste alimento deseja adicionar ao estoque: ")
-                i.estoque += quantidade
-                break
-        return alimentos
+def registrar():
+    nome = input("\nDigite o nome do alimento a ser adicionado: ").lower()
+    tipo_comida = input("Digite o tipo do alimento a ser adicionado: ").lower()
+    data_validade = input("Digite a data de validade do alimento a ser adicionado: ").lower()
+    estoque = input("Digite a quantidade do alimento a ser adicionado: ").lower()
+    print("\nalimento registrado com sucesso!!\n")
+    return Comida(nome, tipo_comida, data_validade, estoque)
 
 
-##aqui eu pergunto qual produto a pessoa quer pegar do estoque, portanto é importante lembrar que antes de usar essa função é nescessario ja ter registrado um alimento na lista usando a função 'registrar'
-def remover_item():
-    while True:
-        alimento = input("qual item deseja pegar do estoque: ").lower()
-        for i in alimentos:
-            if alimento != i.nome:
-                print("O produto procurado não esta registrado no sistema")
-            else:
-                quantidade = input("quanto deste alimento deseja pegar do estoque: ")
-                if i.estoque < quantidade:
-                    print(f"no estoque há apenas {i.estoque} unidades deste produto, pegue somente o que há disponível")
-                else:
-                    i.estoque -= quantidade
-                    print(f"voce retirou {quantidade} unidades de {i.nome} do estoque\n{i.nome} restante: {i.estoque}")
-                    break
-                return alimentos
-#Aqui estamos usando uma f-string para formatar a string.
-#subtituindo as palavras 'quantidade','unidade','estoque','restante' por {quantidade},{unidade},{estoque},{restante}
-#{i.nome} declara que ex:{quantidade} é de alimento,leia o código e fará sentido.
-#isso é útil para que a mensagem final seja personalizada de acordo com o item que está sendo manipulado na string
-#Isso cria strings légiveis e dinâmicas e contextualizadas.
-def verificar_estoque():
-    while True:
-        alimento = input("qual item deseja visualizar: ").lower()
-        for i in alimentos:
-            if alimento != i.nome:
-                print("O produto procurado não esta registrado no sistema")
-            else:
-                print(f"Produto: {i.nome}\nEstoque: {i.estoque}")
-                break
-
-
+def procurar_item(lista):
+    alimento = input("Qual nome deseja buscar: ").lower()
+    for p in lista:
+        if alimento == p.nome:
+            return p
+    return None
 class Aluno:
-    def _init_(self, nome, cpf, numero, email):
+    def _init_(self, nome, matricula, email):
         self.nome = nome
-        self.cpf = cpf
-        self.numero = numero
+        self.matricula = matricula
         self.email = email
         self.presente = False  # Inicialmente aluno não está presente
 
     def marcar_presenca(self):
-        presenca = input("o aluno esta presente (S/N): ").upper()
+        presenca = input("\no aluno esta presente (S/N): ").upper()
         if presenca == 'S':
             self.presente = True
-            print(f"{self.nome} foi marcado como presente.")
+            print(f"\n{self.nome} foi marcado como presente.")
         else:
-            self.presente = False
-            print(f"{self.nome} foi marcado como ausente.")
+            print(f"\n{self.nome} foi marcado como ausente.")
         return self.presente
-#upper e lower tem a mesma função,esses métodos padronizam os caracteres digitados
-#lower padroniza tudo em minusculo
-#upper padroniza tudo em maiusculo
-#sabemos que para a máquina/sistema 's' e 'S' são coisas diferentes então isso é útil
 
-##função que registra o aluno na lista pessoas:
+
 def registrar_aluno():
-    nome_aluno = input("Qual o nome do aluno: ")
-    cpf = input("Qual o cpf do aluno: ")
-    numero = input("Qual o numero do aluno: ")
+    nome_aluno = input("\nQual o nome do aluno: ")
+    matricula = input("Qual a matrícula do aluno: ")
     email = input("Qual o email do aluno: ")
-    return Aluno(nome_aluno, cpf, numero, email)
+    print("\nAluno registrado com sucesso!!")
+    return Aluno(nome_aluno, matricula, email)
 
 
-##aqui colocamos o codigo para funcionar utilizando as funções e metodos criados anteriormente
 while True:
-    #criando um menu para saber se o usuario quer mexer nas funções relacionadas a comidas ou alunos, depois dividimos em um menu para cada
-    opsoes = input("Para visualizar a lista de comandos relacionados aos alimento em estoque digite 1.\nPara "
-                   "visualizar a"
-                   "lista de comandos relacionados aos alunos digite 2.\nCaso queira encerrar sessão digite 0")
-    if opsoes == '1':
+    opcoes = input("\nPara visualizar a lista de comandos relacionados aos alimentos em estoque digite 1.\n"
+                   "Para visualizar a lista de comandos relacionados aos alunos digite 2.\n"
+                   "Caso queira encerrar sessão digite 0: ")
+    if opcoes == '1':
         while True:
-            opsoes2 = input("Para registrar um novo alimento no estoque, digite 1\nPara adicionar mais unidades de "
-                            "algum elemento ja registrado, digite2\nPara visualizar produtos em estoque, "
-                            "digite 3\nPara encerrar sessão,digite 0")
-            if opsoes2 == '1':
+            opcoes2 = input("\nPara registrar um novo alimento no estoque, digite 1.\n"
+                            "Para adicionar mais unidades de algum alimento já registrado, digite 2.\n"
+                            "Para remover unidades de algum alimento já registrado, digite 3.\n"
+                            "Para visualizar informações de produtos em estoque, digite 4.\n"
+                            "Para voltar ao menu principal, digite 0: ")
+            if opcoes2 == '1':
                 comida = registrar()
-                alimentos.append(comida)#append adiciona outro item ao fim da lista,isso é útil para não termos que editar a lista diretamente
-            elif opsoes2 == '2':
-                adicionar_item()
-            elif opsoes2 == '3':
-                verificar_estoque()
-            elif opsoes2 not in ['1', '2', '3', '0']:
-                print("não há funções para isto, por favor navegue utilizando o menu")
-            else:
+                alimentos.append(comida)
+            elif opcoes2 == '2':
+                while True:
+                    print("\ndigite o nome do item que deseja adicionar abaixo.")
+                    comida = procurar_item(alimentos)
+                    if comida == None:
+                        print("\nEste alimento não esta registrado no estoque.")
+                    else:
+                        quantidade = int(input(f"\nQuanto de {comida.nome} deseja adicionar ao estoque"
+                                               f"(estoque atual: {comida.estoque}): "))
+                        comida.estoque += quantidade
+                        print("\nUnidades adicionadas com sucesso!!")
+                        break
+
+            elif opcoes2 == '3':
+                print("\nPara remover um item do estoque, digite o nome do item abaixo.")
+                while True:
+                    comida = procurar_item(alimentos)
+                    if comida == None:
+                        print("\nEste alimento não esta registrado no estoque.")
+                    else:
+                        while True:
+                            quantidade = int(input(
+                                f"\nQuanto de {comida.nome} deseja retirar do estoque(estoque atual: {comida.estoque}): "))
+                            if comida.estoque >= quantidade:
+                                comida.estoque -= quantidade
+                                print("\nunidades retiradas com sucesso!!")
+                                break
+                            else:
+                                print("\nestoque insuficiente, por favor pegue somente o que há no estoque.\n")
+                        break
+            elif opcoes2 == '4':
+                print("\nDigite o nome do produto que deseja visualizar abaixo.")
+                while True:
+                    comida = procurar_item(alimentos)
+                    if comida == None:
+                        print("\nEste alimento não esta registrado no estoque.")
+                    else:
+                        print(f"\nNome: {comida.nome}\nTipo: {comida.tipo_comida}\n"
+                              f"Data de validade: {comida.data_validade}\nUnidades em estoque: {comida.estoque}")
+                        break
+            elif opcoes2 == '0':
                 break
-    elif opsoes == '2':
+            else:
+                print("\nNão há funções para isto, por favor navegue utilizando o menu.")
+    elif opcoes == '2':
         while True:
-            opsoes3 = input("Para registrar um aluno, digite 1\nPara marcar presença em um aluno registrado, "
-                            "digite 2\nPara encerrar sessão, digite 0")
-            if opsoes3 == '1':
+            opcoes3 = input("\nPara registrar um aluno, digite 1.\n"
+                            "Para marcar presença em um aluno registrado, digite 2.\n"
+                            "Para verificar as informações de um aluno, digite 3.\n"
+                            "Para retornar ao menu principal, digite 0: ")
+            if opcoes3 == '1':
                 aluno = registrar_aluno()
                 pessoas.append(aluno)
-            elif opsoes3 == '2':
+            elif opcoes3 == '2':
+                print("\ndigite o nome do aluno que deseja marcar presença abaixo.")
                 while True:
-                    for i in pessoas:
-                        nome = input("qual o nome do aluno: ")
-                        if nome != i.nome:
-                            print("este nome não esta na registrado no sistema, por favor digite outro")
-                        else:
-                            i.marcar_presenca()
-            elif opsoes3 not in ['1', '2', '0']:
-                print("não há opções para isto, por favor navegue utilizando o menu")
-            else:
+                    aluno = procurar_item(pessoas)
+                    if aluno == None:
+                        print("\nEste aluno não esta registrado no sistema.")
+                    else:
+                        aluno.marcar_presenca()
+                        break
+            elif opcoes3 == '3':
+                print("\nDigite o nome do aluno que deseja visualizar as informações abaixo.")
+                while True:
+                    aluno = procurar_item(pessoas)
+                    if aluno == None:
+                        print("\nEste aluno não esta registrado no sistema.")
+                    else:
+                        print(f"\nNome: {aluno.nome}\nMatrícula: {aluno.matricula}\n"
+                              f"E-mail: {aluno.email}\nPresença: {aluno.presente}")
+                        break
+            elif opcoes3 == '0':
                 break
-    elif opsoes not in ['1', '2', '0']:
-        print("não há opções para isto, por favor navegue utilizando o menu")
-    else:
+            else:
+                print("\nNão há opções para isto, por favor navegue utilizando o menu.")
+    elif opcoes == '0':
         break
+    else:
+        print("\nNão há opções para isto, por favor navegue utilizando o menu.")
