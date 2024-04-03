@@ -38,8 +38,22 @@ user4 = Usuario()
 user1.nome
 print(user1.nome,user1.fone,user1.livros_emprestados)
 
-class Livro:
-    pass
+def adicionar_item():   # Verifica se o alimento existe na lista de alimentos e permite adicionar uma quantidade específica ao estoque.
+    while True:  # Inicia um loop infinito para continuar solicitando entradas até que o usuário decida parar.
+        alimento = input("Qual alimento deseja adicionar ao estoque? R: ").lower()  # Solicita ao usuário o nome do alimento desejado e converte para minúsculas.
+        encontrado = False  # Define uma flag para indicar se o alimento foi encontrado na lista de alimentos.
+        for p in alimentos:  # Itera sobre cada item na lista de alimentos.
+            if alimento == p.nome:  # Verifica se o nome do alimento digitado corresponde ao nome de um alimento na lista.
+                quantidade = int(input(f"Quantidade de {p.nome} a ser adicionada ao estoque atual.(atual: {p.estoque}): "))  # Solicita ao usuário a quantidade do alimento a ser adicionada ao estoque.
+                p.estoque += quantidade  # Adiciona a quantidade especificada ao estoque do alimento.
+                print(f"Estoque atualizado para {p.nome}: {p.estoque}")  # Exibe uma mensagem indicando o estoque atualizado para o alimento.
+                encontrado = True  # Define a flag como True para indicar que o alimento foi encontrado.
+                break  # Sai do loop for, pois o alimento foi encontrado e o estoque atualizado.
+        if not encontrado:  # Se o alimento não foi encontrado na lista.
+            print("O produto procurado não está registrado no sistema!")  # Exibe uma mensagem informando que o produto não está registrado no sistema.
+        continuar = input("Deseja adicionar mais algum item ao estoque? (S/N): ").upper()  # Pergunta ao usuário se deseja adicionar mais itens ao estoque e converte a resposta para maiúsculas.
+        if continuar != 'S':  # Se a resposta do usuário não for 'S' (sim).
+            break  # Sai do loop while, encerrando a função.
 
-
+#https://github.com/practical-tutorials/project-based-learning
 

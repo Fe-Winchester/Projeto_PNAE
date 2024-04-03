@@ -1,4 +1,13 @@
 # Protótipo de um sistema desenvolvido para o PNAE- Fase 1
+#Implementar a classe funcioário
+#Estudar onde cada função é executada
+#Adicionar uma mensagem de aviso á linha 14
+#Colocar comentários
+#estudar herança
+#implementar a classe pessoa/user
+#Sistema de senha de acesso
+
+
 
 # Classe comida para representar os alimentos
 class Comida:
